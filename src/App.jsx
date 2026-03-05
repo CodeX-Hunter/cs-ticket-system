@@ -130,6 +130,7 @@ import { SlCalender } from "react-icons/sl";
 function App() {
   const [tickets, setTickets] = useState([]);
   const [tasks, setTasks] = useState([]);
+  const [resolvedTask, setResolvedTask] = useState([])
 
   const handleTask = (ticket) => {
     console.log(ticket.ticket_number);
@@ -149,6 +150,16 @@ function App() {
     setTickets(updateTickets);
   };
 
+  const handleResolvedTask = (task) =>{
+    setResolvedTask([...resolvedTask, task])
+    const newTickets = tickets.filter((ticket)=>ticket.ticket_number !== task.ticket_number)
+    const newTasks = tasks.filter((t)=> t.ticket_number !== task.ticket_number )
+
+    setTasks(newTasks)
+    setTickets(newTickets)
+    console.log(newTickets);
+  }
+
   useEffect(() => {
     const customerTicket = async () => {
       const res = await fetch("/support-ticket.json");
@@ -161,7 +172,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <Banner />
+      <Banner tasks={tasks} resolvedTask={resolvedTask} />
       <section className="grid grid-cols-3 py-4 gap-6">
         <div className="col-span-2 grid grid-cols-2 gap-4">
           <h1 className="text-3xl font-semibold mt-10  col-span-1">
@@ -203,33 +214,7 @@ function App() {
                 </div>
               </div>
             ))}
-            {/* <div className="bg-base-100 shadow-sm shadow-gray-300 rounded-xl p-4 space-y-3">
-              <div className="flex justify-between">
-                <p className="text-lg">Login Issues - Can't Access Account</p>
-                <a className="btn btn-sm rounded-full text-lg bg-[#B9F8CF] text-[#02A53B]">
-                  <GoDotFill size={30} className="-m-2" />
-                  Open
-                </a>
-              </div>
-              <p className="line-clamp-2">
-                Customer is unable to log in to their account. They've tried
-                resetting their password multiple times but still cannot access
-                their account.
-              </p>
-              <div className="flex justify-between">
-                <div className="flex gap-4">
-                  <p>#001</p>
-                  <p className="uppercase">High Priority</p>
-                </div>
-                <div className="flex gap-4">
-                  <p>Daniel Kim</p>
-                  <p className="flex justify-center items-center gap-1">
-                    <SlCalender />
-                    2/04/2024
-                  </p>
-                </div>
-              </div>
-            </div> */}
+
           </div>
         </div>
 
@@ -245,7 +230,7 @@ function App() {
                     className="bg-base-100 shadow-sm shadow-gray-300 rounded-xl p-4 space-y-2"
                   >
                     <h1 className="text-lg font-semibold">{task.title}</h1>
-                    <button className="btn w-full bg-green-500 text-white rounded-sm">
+                    <button onClick={()=>handleResolvedTask(task)} className="btn w-full bg-green-500 text-white rounded-sm">
                       Complete
                     </button>
                   </div>
@@ -257,9 +242,14 @@ function App() {
               )}
             </div>
           </div>
-          <div>
+          <div className="">
             <h1 className="text-3xl font-semibold mt-10">Resolved Task</h1>
-            <div className="col-span-1 mt-3"></div>
+            <div className="col-span-1 mt-3">
+              <p>No resolved tasks yet.</p>
+              <div className="bg-[#E0E7FF] p-4 rounded-md text-lg font-semibold overflow-auto">
+                <p>Password Reset Link Not Working</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
