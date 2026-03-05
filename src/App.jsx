@@ -5,6 +5,7 @@ import Banner from "./components/Banner";
 import { GoDotFill } from "react-icons/go";
 import { SlCalender } from "react-icons/sl";
 import { toast, ToastContainer } from "react-toastify";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
 
   return (
     <>
+    <div className="max-w-[1400px] mx-auto">
       <Navbar />
       <Banner tasks={tasks} resolvedTask={resolvedTask} />
       <section className="grid md:grid-cols-3 grid-cols-1 py-4 gap-6">
@@ -143,6 +145,9 @@ function App() {
           </div>
         </div>
       </section>
+    </div>
+      
+      <Footer/>
       <ToastContainer/>
     </>
   );
