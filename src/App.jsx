@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Banner from "./components/Banner";
 import { GoDotFill } from "react-icons/go";
 import { SlCalender } from "react-icons/sl";
+import { toast, ToastContainer } from "react-toastify";
 
 // const tickets = [
 //   {
@@ -130,7 +131,7 @@ import { SlCalender } from "react-icons/sl";
 function App() {
   const [tickets, setTickets] = useState([]);
   const [tasks, setTasks] = useState([]);
-  const [resolvedTask, setResolvedTask] = useState([])
+  const [resolvedTask, setResolvedTask] = useState([]);
 
   const handleTask = (ticket) => {
     console.log(ticket.ticket_number);
@@ -138,7 +139,7 @@ function App() {
       (ticketID) => ticketID.ticket_number === ticket.ticket_number,
     );
     if (exist) {
-      return alert("duplicate ditected");
+      return toast("Task Already Added", {position: "top-center", theme:"dark"})
     }
     setTasks([...tasks, ticket]);
 
@@ -148,17 +149,22 @@ function App() {
         : t,
     );
     setTickets(updateTickets);
+     return  toast(`${ticket.ticket_number} Ticket In Progress`, {position: "top-center", theme:"dark"})
   };
 
-  const handleResolvedTask = (task) =>{
-    setResolvedTask([...resolvedTask, task])
-    const newTickets = tickets.filter((ticket)=>ticket.ticket_number !== task.ticket_number)
-    const newTasks = tasks.filter((t)=> t.ticket_number !== task.ticket_number )
+  const handleResolvedTask = (task) => {
+    setResolvedTask([...resolvedTask, task]);
+    const newTickets = tickets.filter(
+      (ticket) => ticket.ticket_number !== task.ticket_number,
+    );
+    const newTasks = tasks.filter(
+      (t) => t.ticket_number !== task.ticket_number,
+    );
 
-    setTasks(newTasks)
-    setTickets(newTickets)
-    console.log(newTickets);
-  }
+    setTasks(newTasks);
+    setTickets(newTickets);
+    return  toast(`${task.ticket_number} Task Resolved`, {position: "top-center", theme:"dark"})
+  };
 
   useEffect(() => {
     const customerTicket = async () => {
@@ -214,7 +220,6 @@ function App() {
                 </div>
               </div>
             ))}
-
           </div>
         </div>
 
@@ -230,7 +235,10 @@ function App() {
                     className="bg-base-100 shadow-sm shadow-gray-300 rounded-xl p-4 space-y-2"
                   >
                     <h1 className="text-lg font-semibold">{task.title}</h1>
-                    <button onClick={()=>handleResolvedTask(task)} className="btn w-full bg-green-500 text-white rounded-sm">
+                    <button
+                      onClick={() => handleResolvedTask(task)}
+                      className="btn w-full bg-green-500 text-white rounded-sm"
+                    >
                       Complete
                     </button>
                   </div>
@@ -244,15 +252,20 @@ function App() {
           </div>
           <div className="">
             <h1 className="text-3xl font-semibold mt-10">Resolved Task</h1>
-            <div className="col-span-1 mt-3">
-              <p>No resolved tasks yet.</p>
-              <div className="bg-[#E0E7FF] p-4 rounded-md text-lg font-semibold overflow-auto">
-                <p>Password Reset Link Not Working</p>
-              </div>
+            <div className="col-span-1 mt-3 space-y-3">
+              {
+                resolvedTask.length > 0 ? resolvedTask.map((task) => (
+                <div className="bg-[#E0E7FF] p-4 rounded-md text-lg font-semibold overflow-auto shadow-md">
+                  <p>{task.title}</p>
+                </div>
+              )) : <p>No resolved tasks yet.</p>
+              }
+             
             </div>
           </div>
         </div>
       </section>
+      <ToastContainer/>
     </>
   );
 }
