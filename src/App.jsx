@@ -57,19 +57,19 @@ function App() {
     <>
       <Navbar />
       <Banner tasks={tasks} resolvedTask={resolvedTask} />
-      <section className="grid grid-cols-3 py-4 gap-6">
-        <div className="col-span-2 grid grid-cols-2 gap-4">
+      <section className="grid md:grid-cols-3 grid-cols-1 py-4 gap-6">
+        <div className="col-span-2 grid grid-cols-2 gap-4 md:px-0 px-4">
           <h1 className="text-3xl font-semibold mt-10  col-span-1">
             Customer Tickets
           </h1>
-          <div className="col-span-2 grid grid-cols-2 gap-6">
+          <div className="col-span-2 grid md:grid-cols-2 grid-cols-1 gap-6">
             {tickets?.map((ticket) => (
               <div
                 onClick={() => handleTask(ticket)}
                 key={ticket.ticket_number}
                 className="bg-base-100 shadow-sm shadow-gray-300 rounded-xl p-4 space-y-3"
               >
-                <div className="flex justify-between">
+                <div className="flex justify-between gap-2">
                   <p className="text-lg">{ticket.title}</p>
                   <a
                     className={`btn btn-sm rounded-full text-lg ${ticket.status === "Open" ? "bg-[#B9F8CF] text-[#02A53B]" : "bg-[#F8F3B9] text-[#FEBB0C]"}`}
@@ -80,7 +80,7 @@ function App() {
                 </div>
                 <p className="line-clamp-2">{ticket.description}</p>
                 <div className="flex justify-between">
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 md:text-md text-sm">
                     <p>{ticket.ticket_number}</p>
                     <p
                       className={`uppercase ${ticket.priority === "HIGH PRIORITY" ? "text-[#F83044]" : ticket.priority === "MEDIUM PRIORITY" ? "text-[#FEBB0C]" : "text-[#02A53B]"}`}
@@ -88,7 +88,7 @@ function App() {
                       {ticket.priority}
                     </p>
                   </div>
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 md:text-md text-sm">
                     <p>{ticket.customer}</p>
                     <p className="flex justify-center items-center gap-1">
                       <SlCalender />
@@ -103,7 +103,7 @@ function App() {
 
         {/* ----task status manage---- */}
         <div className="col-span-1">
-          <div className="space-y-4">
+          <div className="space-y-4 md:px-0 px-4">
             <h1 className="text-3xl font-semibold mt-10">Task Status</h1>
             <div className="space-y-4">
               {tasks.length > 0 ? (
@@ -128,7 +128,7 @@ function App() {
               )}
             </div>
           </div>
-          <div className="">
+          <div className="md:px-0 px-4">
             <h1 className="text-3xl font-semibold mt-10">Resolved Task</h1>
             <div className="col-span-1 mt-3 space-y-3">
               {
