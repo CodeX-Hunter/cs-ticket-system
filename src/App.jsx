@@ -5,7 +5,6 @@ import Banner from "./components/Banner";
 import { GoDotFill } from "react-icons/go";
 import { SlCalender } from "react-icons/sl";
 
-
 // const tickets = [
 //   {
 //     ticket_number: "#2001",
@@ -132,19 +131,22 @@ function App() {
   const [tickets, setTickets] = useState([]);
   const [tasks, setTasks] = useState([]);
 
-  const handleTask = (ticketNumber) => {
-    console.log(ticketNumber.ticket_number);
-    const updateTickets = tickets.map((ticket)=> ticket.ticket_number === ticketNumber.ticket_number ? {...ticket, status: "In-Progress"} : ticket )
-    setTickets(updateTickets)
-  //   const exist = tasks.find(ticketNumber=>ticketNumber.ticket_number === ticket.ticket_number)
-  //   if(exist){
-  //     return  alert("duplicate ditected")
-  //   }
-   
-  //   console.log(ticket);
-  //   setTasks([...tasks, ticket])
-  // console.log(tasks);
+  const handleTask = (ticket) => {
+    console.log(ticket.ticket_number);
+    const exist = tasks.find(
+      (ticketID) => ticketID.ticket_number === ticket.ticket_number,
+    );
+    if (exist) {
+      return alert("duplicate ditected");
+    }
+    setTasks([...tasks, ticket]);
 
+    const updateTickets = tickets.map((t) =>
+      t.ticket_number === ticket.ticket_number
+        ? { ...t, status: "In-Progress" }
+        : t,
+    );
+    setTickets(updateTickets);
   };
 
   useEffect(() => {
@@ -155,8 +157,6 @@ function App() {
     };
     customerTicket();
   }, []);
-
-  
 
   return (
     <>
@@ -238,22 +238,24 @@ function App() {
           <div className="space-y-4">
             <h1 className="text-3xl font-semibold mt-10">Task Status</h1>
             <div className="space-y-4">
-              {
-                tasks.length > 0 ?
-                  tasks.map((task)=>(
-                <div key={task.ticket_number} className="bg-base-100 shadow-sm shadow-gray-300 rounded-xl p-4 space-y-2">
-                <h1 className="text-lg font-semibold">{task.title}</h1>
-                <button className="btn w-full bg-green-500 text-white rounded-sm">Complete</button>
-              </div>
-               )) : <div className="px-1">
-                <h1>Select a ticket to add to Task Status</h1>
-               </div>
-
-              }
-             
-              
+              {tasks.length > 0 ? (
+                tasks.map((task) => (
+                  <div
+                    key={task.ticket_number}
+                    className="bg-base-100 shadow-sm shadow-gray-300 rounded-xl p-4 space-y-2"
+                  >
+                    <h1 className="text-lg font-semibold">{task.title}</h1>
+                    <button className="btn w-full bg-green-500 text-white rounded-sm">
+                      Complete
+                    </button>
+                  </div>
+                ))
+              ) : (
+                <div className="px-1">
+                  <h1>Select a ticket to add to Task Status</h1>
+                </div>
+              )}
             </div>
-            
           </div>
           <div>
             <h1 className="text-3xl font-semibold mt-10">Resolved Task</h1>
