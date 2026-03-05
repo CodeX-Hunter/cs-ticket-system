@@ -133,6 +133,12 @@ function App() {
   const [tasks, setTasks] = useState([]);
 
   const handleTask = (ticket) => {
+    console.log(ticket.ticket_number);
+    const exist = tasks.find(ticketNumber=>ticketNumber.ticket_number === ticket.ticket_number)
+    if(exist){
+      return  alert("duplicate ditected")
+    }
+   
     console.log(ticket);
     setTasks([...tasks, ticket])
   console.log(tasks);
