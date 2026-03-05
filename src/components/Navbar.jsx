@@ -60,7 +60,7 @@ const Navbar = () => {
             <ul className="menu menu-horizontal px-1">{NavItem}</ul>
           </div>
 
-          <a className="btn bg-blue-500 text-white"> <IoMdAdd className="" />
+          <a className="btn bg-linear-to-r from-[#632EE3] to-[#9F62F2] text-white"> <IoMdAdd className="" />
  New Ticket</a>
         </div>
       </div>

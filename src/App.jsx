@@ -6,127 +6,6 @@ import { GoDotFill } from "react-icons/go";
 import { SlCalender } from "react-icons/sl";
 import { toast, ToastContainer } from "react-toastify";
 
-// const tickets = [
-//   {
-//     ticket_number: "#2001",
-//     title: "Password Reset Link Not Working",
-//     description:
-//       "Customer reports that the password reset email link expires immediately after clicking.",
-//     priority: "HIGH PRIORITY",
-//     status: "Open",
-//     customer: "Alice Carter",
-//     date: "2/01/2024",
-//   },
-//   {
-//     ticket_number: "#2002",
-//     title: "Subscription Renewal Failed",
-//     description:
-//       "Customer attempted to renew their subscription but payment was declined despite multiple attempts.",
-//     priority: "HIGH PRIORITY",
-//     status: "Open",
-//     customer: "Brian Lee",
-//     date: "2/02/2024",
-//   },
-//   {
-//     ticket_number: "#2003",
-//     title: "Error Loading Dashboard",
-//     description:
-//       "Customer’s dashboard shows a blank screen when logging in via Safari browser.",
-//     priority: "MEDIUM PRIORITY",
-//     status: "In-Progress",
-//     customer: "Chloe Martinez",
-//     date: "2/03/2024",
-//   },
-//   {
-//     ticket_number: "#2004",
-//     title: "Incorrect Order Quantity",
-//     description: "Customer ordered 3 items but only 2 were shipped.",
-//     priority: "LOW PRIORITY",
-//     status: "Open",
-//     customer: "Daniel Kim",
-//     date: "2/04/2024",
-//   },
-//   {
-//     ticket_number: "#2005",
-//     title: "Mobile Notifications Not Received",
-//     description:
-//       "Customer is not receiving push notifications on iOS 17 devices.",
-//     priority: "MEDIUM PRIORITY",
-//     status: "In-Progress",
-//     customer: "Ella Thompson",
-//     date: "2/05/2024",
-//   },
-//   {
-//     ticket_number: "#2006",
-//     title: "Refund Process Delayed",
-//     description:
-//       "Customer requested a refund 3 weeks ago but hasn’t received confirmation.",
-//     priority: "HIGH PRIORITY",
-//     status: "Open",
-//     customer: "Frank Harris",
-//     date: "2/06/2024",
-//   },
-//   {
-//     ticket_number: "#2007",
-//     title: "Invoice Shows Wrong Currency",
-//     description:
-//       "Customer’s invoice is displayed in USD instead of EUR despite account settings.",
-//     priority: "LOW PRIORITY",
-//     status: "Open",
-//     customer: "Grace Walker",
-//     date: "2/07/2024",
-//   },
-//   {
-//     ticket_number: "#2008",
-//     title: "App Freezes During Checkout",
-//     description:
-//       "Customer reports the app freezes when attempting to complete checkout.",
-//     priority: "HIGH PRIORITY",
-//     status: "Open",
-//     customer: "Henry Adams",
-//     date: "2/08/2024",
-//   },
-//   {
-//     ticket_number: "#2009",
-//     title: "Email Verification Not Received",
-//     description:
-//       "Customer signed up but never received the verification email.",
-//     priority: "MEDIUM PRIORITY",
-//     status: "In-Progress",
-//     customer: "Isabella Moore",
-//     date: "2/09/2024",
-//   },
-//   {
-//     ticket_number: "#2010",
-//     title: "Profile Picture Upload Fails",
-//     description:
-//       "Customer cannot upload a profile picture; error message appears every time.",
-//     priority: "LOW PRIORITY",
-//     status: "Open",
-//     customer: "Jack Robinson",
-//     date: "2/10/2024",
-//   },
-//   {
-//     ticket_number: "#2011",
-//     title: "Delayed Shipping Notification",
-//     description:
-//       "Customer did not receive any update about delayed shipping for their order.",
-//     priority: "MEDIUM PRIORITY",
-//     status: "In-Progress",
-//     customer: "Karen White",
-//     date: "2/11/2024",
-//   },
-//   {
-//     ticket_number: "#2012",
-//     title: "Two-Factor Authentication Not Working",
-//     description:
-//       "Customer reports that the 2FA code is not being accepted during login.",
-//     priority: "HIGH PRIORITY",
-//     status: "Open",
-//     customer: "Liam Scott",
-//     date: "2/12/2024",
-//   },
-// ];
 
 function App() {
   const [tickets, setTickets] = useState([]);
@@ -134,7 +13,6 @@ function App() {
   const [resolvedTask, setResolvedTask] = useState([]);
 
   const handleTask = (ticket) => {
-    console.log(ticket.ticket_number);
     const exist = tasks.find(
       (ticketID) => ticketID.ticket_number === ticket.ticket_number,
     );
