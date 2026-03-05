@@ -132,16 +132,18 @@ function App() {
   const [tickets, setTickets] = useState([]);
   const [tasks, setTasks] = useState([]);
 
-  const handleTask = (ticket) => {
-    console.log(ticket.ticket_number);
-    const exist = tasks.find(ticketNumber=>ticketNumber.ticket_number === ticket.ticket_number)
-    if(exist){
-      return  alert("duplicate ditected")
-    }
+  const handleTask = (ticketNumber) => {
+    console.log(ticketNumber.ticket_number);
+    const updateTickets = tickets.map((ticket)=> ticket.ticket_number === ticketNumber.ticket_number ? {...ticket, status: "In-Progress"} : ticket )
+    setTickets(updateTickets)
+  //   const exist = tasks.find(ticketNumber=>ticketNumber.ticket_number === ticket.ticket_number)
+  //   if(exist){
+  //     return  alert("duplicate ditected")
+  //   }
    
-    console.log(ticket);
-    setTasks([...tasks, ticket])
-  console.log(tasks);
+  //   console.log(ticket);
+  //   setTasks([...tasks, ticket])
+  // console.log(tasks);
 
   };
 
@@ -154,6 +156,7 @@ function App() {
     customerTicket();
   }, []);
 
+  
 
   return (
     <>

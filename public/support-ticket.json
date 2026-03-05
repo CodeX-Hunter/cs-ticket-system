@@ -22,7 +22,7 @@
     "title": "Error Loading Dashboard",
     "description": "Customer’s dashboard shows a blank screen when logging in via Safari browser.",
     "priority": "MEDIUM PRIORITY",
-    "status": "In-Progress",
+    "status": "Open",
     "customer": "Chloe Martinez",
     "date": "2/03/2024"
   },
@@ -40,7 +40,7 @@
     "title": "Mobile Notifications Not Received",
     "description": "Customer is not receiving push notifications on iOS 17 devices.",
     "priority": "MEDIUM PRIORITY",
-    "status": "In-Progress",
+    "status": "Open",
     "customer": "Ella Thompson",
     "date": "2/05/2024"
   },
@@ -76,7 +76,7 @@
     "title": "Email Verification Not Received",
     "description": "Customer signed up but never received the verification email.",
     "priority": "MEDIUM PRIORITY",
-    "status": "In-Progress",
+    "status": "Open",
     "customer": "Isabella Moore",
     "date": "2/09/2024"
   },
@@ -94,7 +94,7 @@
     "title": "Delayed Shipping Notification",
     "description": "Customer did not receive any update about delayed shipping for their order.",
     "priority": "MEDIUM PRIORITY",
-    "status": "In-Progress",
+    "status": "Open",
     "customer": "Karen White",
     "date": "2/11/2024"
   },
